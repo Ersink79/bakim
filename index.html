@@ -187,16 +187,31 @@
         <li>Filtre temizliği</li>
         <li>Tambur dönme testi</li>
         <li>Elektrik kablosu kontrolü</li>
- 
+      </ul>
+      <div class="extra">
+        <ul>
           <li>Isıtıcı rezistans kontrolü</li>
           <li>Nem sensörü kontrolü</li>
           <li>Genel yüzey temizliği</li>
         </ul>
       </div>
-      <span class=\"toggle-btn\">Daha Fazla…</span><br>
-      <button class=\"randevu-btn\">Randevu Oluştur</button>
+      <span class="toggle-btn">Daha Fazla…</span><br>
+      <button class="randevu-btn">Randevu Oluştur</button>
     </div>
   </div>
   <script>
-  document.querySelectorAll(\".toggle-btn\").forEach(btn => {btn.addEventListener(\"click\", () => {const extra = btn.previousElementSibling;if(extra.style.display === \"block\") {extra.style.display = \"none\";btn.textContent = \"Daha Fazla…\";} else {extra.style.display = \"block\";btn.textContent = \"Daha Az…\";}});});</script></body>\n</html>\n```  \n\n
-0
+    document.querySelectorAll(".toggle-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const extra = btn.previousElementSibling;
+        if(extra.style.display === "block") {
+          extra.style.display = "none";
+          btn.textContent = "Daha Fazla…";
+        } else {
+          extra.style.display = "block";
+          btn.textContent = "Daha Az…";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
