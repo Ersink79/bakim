@@ -186,7 +186,18 @@
       <ul>
         <li>Filtre temizliği</li>
         <li>Tambur dönme testi</li>
-        <li>Elektrik kablosu kontrolü</li></ul>\n      <div class=\"extra\">\n        <ul>\n          <li>Isıtıcı rezistans kontrolü</li>
+        <li>Elektrik kablosu kontrolü</li>
+      </ul>
+      <div class=\"extra\">
+        <ul>
+          <li>Isıtıcı rezistans kontrolü</li>
           <li>Nem sensörü kontrolü</li>
           <li>Genel yüzey temizliği</li>
-        </ul>\n      </div>\n      <span class=\"toggle-btn\">Daha Fazla…</span><br>\n      <button class=\"randevu-btn\">Randevu Oluştur</button>\n    </div>\n  </div>\n\n  <script>\n    document.querySelectorAll(\".toggle-btn\").forEach(btn => {\n      btn.addEventListener(\"click\", () => {\n        const extra = btn.previousElementSibling;\n        if(extra.style.display === \"block\") {\n          extra.style.display = \"none\";\n          btn.textContent = \"Daha Fazla…\";\n        } else {\n          extra.style.display = \"block\";\n          btn.textContent = \"Daha Az…\";\n        }\n      });\n    });\n  </script>\n</body>\n</html>\n```  \n\n
+        </ul>
+      </div>
+      <span class=\"toggle-btn\">Daha Fazla…</span><br>
+      <button class=\"randevu-btn\">Randevu Oluştur</button>
+    </div>
+  </div>
+  <script>
+  document.querySelectorAll(\".toggle-btn\").forEach(btn => {\n      btn.addEventListener(\"click\", () => {\n        const extra = btn.previousElementSibling;\n        if(extra.style.display === \"block\") {\n          extra.style.display = \"none\";\n          btn.textContent = \"Daha Fazla…\";\n        } else {\n          extra.style.display = \"block\";\n          btn.textContent = \"Daha Az…\";\n        }\n      });\n    });\n  </script>\n</body>\n</html>\n```  \n\n
