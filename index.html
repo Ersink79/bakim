@@ -184,4 +184,9 @@
     <div class="package">
       <h2>Kurutma Makinesi – <span class="price">1200 TL</span></h2>
       <ul>
-        <li>Filtre temizliği</li>\n        <li>Tambur dönme testi</li>\n        <li>Elektrik kablosu kontrolü</li>\n      </ul>\n      <div class=\"extra\">\n        <ul>\n          <li>Isıtıcı rezistans kontrolü</li>\n          <li>Nem sensörü kontrolü</li>\n          <li>Genel yüzey temizliği</li>\n        </ul>\n      </div>\n      <span class=\"toggle-btn\">Daha Fazla…</span><br>\n      <button class=\"randevu-btn\">Randevu Oluştur</button>\n    </div>\n  </div>\n\n  <script>\n    document.querySelectorAll(\".toggle-btn\").forEach(btn => {\n      btn.addEventListener(\"click\", () => {\n        const extra = btn.previousElementSibling;\n        if(extra.style.display === \"block\") {\n          extra.style.display = \"none\";\n          btn.textContent = \"Daha Fazla…\";\n        } else {\n          extra.style.display = \"block\";\n          btn.textContent = \"Daha Az…\";\n        }\n      });\n    });\n  </script>\n</body>\n</html>\n```  \n\n
+        <li>Filtre temizliği</li>
+        <li>Tambur dönme testi</li>
+        <li>Elektrik kablosu kontrolü</li></ul>\n      <div class=\"extra\">\n        <ul>\n          <li>Isıtıcı rezistans kontrolü</li>
+          <li>Nem sensörü kontrolü</li>
+          <li>Genel yüzey temizliği</li>
+        </ul>\n      </div>\n      <span class=\"toggle-btn\">Daha Fazla…</span><br>\n      <button class=\"randevu-btn\">Randevu Oluştur</button>\n    </div>\n  </div>\n\n  <script>\n    document.querySelectorAll(\".toggle-btn\").forEach(btn => {\n      btn.addEventListener(\"click\", () => {\n        const extra = btn.previousElementSibling;\n        if(extra.style.display === \"block\") {\n          extra.style.display = \"none\";\n          btn.textContent = \"Daha Fazla…\";\n        } else {\n          extra.style.display = \"block\";\n          btn.textContent = \"Daha Az…\";\n        }\n      });\n    });\n  </script>\n</body>\n</html>\n```  \n\n
