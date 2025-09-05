@@ -3,212 +3,776 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bakım Paketleri</title>
+  <title>Bakım Paketleri | Profesyonel Ev Aletleri Bakım Hizmeti</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: 'Roboto', sans-serif; background: #f9f9f9; margin: 0; padding: 20px; }
-    h1 { text-align: center; color: #e60000; font-size: 28px; margin-bottom: 10px; }
-    .intro { text-align:center; max-width:900px; margin:10px auto 30px auto; font-size:16px; color:#444; line-height:1.5; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width:1200px; margin:0 auto; }
-    .package { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.2s; }
-    .package:hover { transform: translateY(-4px); }
-    .package h2 { margin-top: 0; color: #333; font-size:20px; }
-    .price { font-weight: bold; color: #e60000; font-size:18px; }
-    ul { margin: 10px 0; padding-left: 20px; font-size:15px; color:#555; }
-    .extra { display: none; margin-top: 10px; }
-    .toggle-btn { color: #0073e6; cursor: pointer; margin-top: 10px; display: inline-block; font-size:14px; }
-    .randevu-btn { background: #e60000; color: #fff; border: none; padding: 10px 16px; border-radius: 6px; margin-top: 15px; cursor: pointer; font-size:14px; transition: background 0.3s; }
-    .randevu-btn:hover { background: #b30000; }
-    @media(max-width:600px){ h1{font-size:22px;} .intro{font-size:14px;} .package h2{font-size:18px;} }
+    :root {
+      --primary: #e60000;
+      --primary-dark: #b30000;
+      --secondary: #0073e6;
+      --light-bg: #f9f9f9;
+      --dark-text: #333;
+      --light-text: #555;
+      --white: #fff;
+      --border-radius: 12px;
+      --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body { 
+      font-family: 'Roboto', sans-serif; 
+      background: var(--light-bg); 
+      margin: 0; 
+      padding: 0;
+      color: var(--dark-text);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo i {
+      margin-right: 10px;
+    }
+    
+    .contact-info {
+      display: flex;
+      align-items: center;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+      color: var(--light-text);
+      text-decoration: none;
+    }
+    
+    .contact-item i {
+      margin-right: 8px;
+      color: var(--primary);
+    }
+    
+    h1 { 
+      text-align: center; 
+      color: var(--primary); 
+      font-size: 36px; 
+      margin: 30px 0 15px; 
+    }
+    
+    .intro { 
+      text-align: center; 
+      max-width: 900px; 
+      margin: 0 auto 40px; 
+      font-size: 18px; 
+      color: var(--light-text); 
+      line-height: 1.6; 
+    }
+    
+    .highlight {
+      background-color: #fff4f4;
+      border-left: 4px solid var(--primary);
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 900px;
+      border-radius: 4px;
+    }
+    
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 40px 0;
+    }
+    
+    .stat-item {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      text-align: center;
+      min-width: 200px;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .stat-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: var(--light-text);
+    }
+    
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      gap: 25px; 
+      margin: 40px 0;
+    }
+    
+    .package { 
+      background: var(--white); 
+      border-radius: var(--border-radius); 
+      padding: 25px; 
+      box-shadow: var(--box-shadow); 
+      transition: transform 0.3s, box-shadow 0.3s; 
+      position: relative;
+      border-top: 5px solid var(--primary);
+    }
+    
+    .package:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .popular {
+      border-top: 5px solid var(--secondary);
+    }
+    
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--secondary);
+      color: var(--white);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .package h2 { 
+      margin-top: 0; 
+      color: var(--dark-text); 
+      font-size: 22px; 
+      margin-bottom: 15px;
+    }
+    
+    .price { 
+      font-weight: bold; 
+      color: var(--primary); 
+      font-size: 24px; 
+      display: block;
+      margin: 10px 0;
+    }
+    
+    .original-price {
+      text-decoration: line-through;
+      color: var(--light-text);
+      font-size: 18px;
+      margin-right: 10px;
+    }
+    
+    .discount {
+      background: #ffeded;
+      color: var(--primary);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    ul { 
+      margin: 15px 0; 
+      padding-left: 20px; 
+      font-size: 15px; 
+      color: var(--light-text); 
+    }
+    
+    ul li {
+      margin-bottom: 8px;
+      position: relative;
+    }
+    
+    ul li:before {
+      content: "•";
+      color: var(--primary);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    
+    .extra { 
+      display: none; 
+      margin-top: 15px; 
+    }
+    
+    .toggle-btn { 
+      color: var(--secondary); 
+      cursor: pointer; 
+      margin-top: 15px; 
+      display: inline-block; 
+      font-size: 15px; 
+      font-weight: 500;
+    }
+    
+    .toggle-btn i {
+      margin-right: 5px;
+      transition: transform 0.3s;
+    }
+    
+    .toggle-btn.active i {
+      transform: rotate(180deg);
+    }
+    
+    .randevu-btn { 
+      background: var(--primary); 
+      color: var(--white); 
+      border: none; 
+      padding: 12px 20px; 
+      border-radius: 6px; 
+      margin-top: 20px; 
+      cursor: pointer; 
+      font-size: 16px; 
+      font-weight: 500;
+      transition: background 0.3s; 
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .randevu-btn i {
+      margin-right: 8px;
+    }
+    
+    .randevu-btn:hover { 
+      background: var(--primary-dark); 
+    }
+    
+    .whatsapp-btn {
+      background: #25D366;
+      margin-top: 10px;
+    }
+    
+    .whatsapp-btn:hover {
+      background: #128C7E;
+    }
+    
+    .testimonials {
+      margin: 60px 0;
+    }
+    
+    .testimonials h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--dark-text);
+    }
+    
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .testimonial {
+      background: var(--white);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: var(--light-text);
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    
+    .rating {
+      color: #FFD700;
+      margin-top: 5px;
+    }
+    
+    .faq-container {
+      margin: 60px 0;
+    }
+    
+    .faq-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .faq-item {
+      background: var(--white);
+      margin-bottom: 15px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .faq-question {
+      padding: 15px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+    }
+    
+    .faq-answer {
+      padding: 0 20px 15px;
+      color: var(--light-text);
+      display: none;
+    }
+    
+    .faq-active .faq-answer {
+      display: block;
+    }
+    
+    .faq-active .faq-question i {
+      transform: rotate(180deg);
+    }
+    
+    .subscription {
+      background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+      border: 1px solid #eee;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      margin: 40px 0;
+      text-align: center;
+    }
+    
+    .subscription h2 {
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+    
+    .subscription p {
+      margin-bottom: 20px;
+      color: var(--light-text);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-secondary {
+      background: var(--secondary);
+    }
+    
+    .btn-secondary:hover {
+      background: #0060b9;
+    }
+    
+    footer {
+      background: #333;
+      color: var(--white);
+      padding: 40px 0;
+      margin-top: 60px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .footer-section h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    
+    .footer-section p, .footer-section a {
+      color: #ccc;
+      margin-bottom: 10px;
+      display: block;
+      text-decoration: none;
+    }
+    
+    .footer-section a:hover {
+      color: var(--white);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #555;
+      color: #ccc;
+      font-size: 14px;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .contact-info {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .contact-item {
+        margin: 5px 10px;
+      }
+      
+      h1 {
+        font-size: 28px;
+      }
+      
+      .intro {
+        font-size: 16px;
+      }
+      
+      .package h2 {
+        font-size: 20px;
+      }
+      
+      .stats-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .stat-item {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Bakım Paketleri</h1>
-  <p class="intro">Ürünlerinizin uzun ömürlü, güvenli ve verimli çalışması için düzenli bakım şarttır. Aşağıdaki bakım paketlerini inceleyebilir ve randevunuzu kolayca oluşturabilirsiniz. Kampanya fiyatlarımız <strong>xx tarihine kadar geçerlidir.</strong></p>
-
-  <div class="grid">
-    <!-- Fırın -->
-    <div class="package">
-      <h2>Fırın – <span class="price">1250 TL</span></h2>
-      <ul>
-        <li>Şebeke kablosu kontrolü</li>
-        <li>Programlarda komponent çalışma kontrolü</li>
-        <li>Servis testi ile elektronik kontrol</li>
-      </ul>
-      <div class="extra">
-        <ul>
-          <li>Kapak contası ve cam temizliği</li>
-          <li>Fırın içi ve lamba temizliği</li>
-          <li>Fan motoru ses kontrolü</li>
-          <li>Genel yüzey temizliği</li>
-        </ul>
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-tools"></i> TeknoBakım
+      </a>
+      <div class="contact-info">
+        <a href="tel:+905551234567" class="contact-item">
+          <i class="fas fa-phone"></i> 0555 123 45 67
+        </a>
+        <a href="mailto:info@teknobakim.com" class="contact-item">
+          <i class="fas fa-envelope"></i> info@teknobakim.com
+        </a>
       </div>
-      <span class="toggle-btn">Daha Fazla…</span><br>
-      <button class="randevu-btn">Randevu Oluştur</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Profesyonel Bakım Paketleri</h1>
+    <p class="intro">Ürünlerinizin uzun ömürlü, güvenli ve verimli çalışması için düzenli bakım şarttır. Aşağıdaki bakım paketlerini inceleyebilir ve randevunuzu kolayca oluşturabilirsiniz. Kampanya fiyatlarımız <strong>30 Haziran 2023 tarihine kadar geçerlidir.</strong></p>
+    
+    <div class="highlight">
+      <p><i class="fas fa-bolt"></i> <strong>Özel Teklif:</strong> 2 veya daha fazla cihaz için bakım paketi alana %15 ek indirim! Hemen iletişime geçin.</p>
+    </div>
+    
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number">1250+</div>
+        <div class="stat-label">Mutlu Müşteri</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Memnuniyet Oranı</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">7/24</div>
+        <div class="stat-label">Destek Hattı</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">15</div>
+        <div class="stat-label">Yıllık Deneyim</div>
+      </div>
     </div>
 
-    <!-- Derin Dondurucu -->
-    <div class="package">
-      <h2>Derin Dondurucu – <span class="price">1350 TL</span></h2>
-      <ul>
-        <li>Sıcaklık sensörü kontrolü</li>
-        <li>Kapı contası kontrolü</li>
-        <li>Gaz kaçağı testi</li>
-      </ul>
-      <div class="extra">
+    <div class="grid">
+      <!-- Fırın -->
+      <div class="package">
+        <h2>Fırın Bakım Paketi</h2>
+        <span class="original-price">1500 TL</span>
+        <span class="price">1250 TL</span>
+        <span class="discount">%17 indirim</span>
         <ul>
-          <li>Fan motoru kontrolü</li>
-          <li>İç aydınlatma kontrolü</li>
-          <li>Genel yüzey temizliği</li>
+          <li>Şebeke kablosu kontrolü</li>
+          <li>Programlarda komponent çalışma kontrolü</li>
+          <li>Servis testi ile elektronik kontrol</li>
         </ul>
+        <div class="extra">
+          <ul>
+            <li>Kapak contası ve cam temizliği</li>
+            <li>Fırın içi ve lamba temizliği</li>
+            <li>Fan motoru ses kontrolü</li>
+            <li>Genel yüzey temizliği</li>
+          </ul>
+        </div>
+        <span class="toggle-btn"><i class="fas fa-chevron-down"></i> Daha Fazla Bilgi</span><br>
+        <button class="randevu-btn"><i class="fas fa-calendar-check"></i> Randevu Oluştur</button>
+        <button class="randevu-btn whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp ile Sorgula</button>
       </div>
-      <span class="toggle-btn">Daha Fazla…</span><br>
-      <button class="randevu-btn">Randevu Oluştur</button>
-    </div>
 
-    <!-- Buzdolabı -->
-    <div class="package">
-      <h2>Buzdolabı – <span class="price">1450 TL</span></h2>
-      <ul>
-        <li>Sıcaklık değerlerinin ölçümü</li>
-        <li>Kapı lastiği kontrolü</li>
-        <li>Gaz basınç testi</li>
-      </ul>
-      <div class="extra">
+      <!-- Klima -->
+      <div class="package popular">
+        <div class="popular-badge">EN POPÜLER</div>
+        <h2>Klima Bakım Paketi</h2>
+        <span class="original-price">1850 TL</span>
+        <span class="price">1600 TL</span>
+        <span class="discount">%14 indirim</span>
         <ul>
-          <li>Kompresör ses ve titreşim kontrolü</li>
-          <li>Fan ve motor performans kontrolü</li>
-          <li>Genel yüzey temizliği</li>
-        </ul>
-      </div>
-      <span class="toggle-btn">Daha Fazla…</span><br>
-      <button class="randevu-btn">Randevu Oluştur</button>
-    </div>
-
-    <!-- Klima -->
-    <div class="package">
-      <h2>Klima – <span class="price">1600 TL</span></h2>
-      <ul>
-        <li>Gaz basınç ölçümü</li>
-        <li>Hava filtresi temizliği</li>
-        <li>Kompresör kontrolü</li>
-      </ul>
-      <div class="extra">
-        <ul>
-          <li>Elektrik bağlantılarının kontrolü</li>
-          <li>Drenaj hattı temizliği</li>
-          <li>Genel yüzey temizliği</li>
-        </ul>
-      </div>
-      <span class="toggle-btn">Daha Fazla…</span><br>
-      <button class="randevu-btn">Randevu Oluştur</button>
-    </div>
-
-    <!-- Çamaşır Makinesi -->
-    <div class="package">
-      <h2>Çamaşır Makinesi – <span class="price">1300 TL</span></h2>
-      <ul>
-        <li>Su giriş hortumu kontrolü</li>
-        <li>Pompa filtre temizliği</li>
-        <li>Elektrik kablosu kontrolü</li>
-      </ul>
-      <div class="extra">
-        <ul>
-          <li>Kazan rulman sesi kontrolü</li>
-          <li>Köpük sensörü kontrolü</li>
-          <li>Genel yüzey temizliği</li>
-        </ul>
-      </div>
-      <span class="toggle-btn">Daha Fazla…</span><br>
-      <button class="randevu-btn">Randevu Oluştur</button>
-    </div>
-
-    <!-- Bulaşık Makinesi -->
-    <div class="package">
-      <h2>Bulaşık Makinesi – <span class="price">1250 TL</span></h2>
-      <ul>
-        <li>Su giriş vanası kontrolü</li>
-        <li>Filtre ve pervane temizliği</li>
-        <li>Deterjan haznesi kontrolü</li>
-      </ul>
-      <div class="extra">
-        <ul>
-          <li>Isıtıcı rezistans kontrolü</li>
-          <li>Elektronik kart bağlantı kontrolü</li>
-          <li>Genel yüzey temizliği</li>
-        </ul>
-      </div>
-      <span class="toggle-btn">Daha Fazla…</span><br>
-      <button class="randevu-btn">Randevu Oluştur</button>
-    </div>
-
-    <!-- Su Sebili -->
-    <div class="package">
-      <h2>Su Sebili – <span class="price">950 TL</span></h2>
-      <ul>
-        <li>Su tankı temizliği</li>
-        <li>Soğutma sistemi kontrolü</li>
-        <li>Elektrik kablosu kontrolü</li>
-      </ul>
-      <div class="extra">
-        <ul>
-          <li>Musluk ve bağlantı noktalarının kontrolü</li>
           <li>Gaz basınç ölçümü</li>
-          <li>Genel yüzey temizliği</li>
+          <li>Hava filtresi temizliği</li>
+          <li>Kompresör kontrolü</li>
         </ul>
+        <div class="extra">
+          <ul>
+            <li>Elektrik bağlantılarının kontrolü</li>
+            <li>Drenaj hattı temizliği</li>
+            <li>Genel yüzey temizliği</li>
+          </ul>
+        </div>
+        <span class="toggle-btn"><i class="fas fa-chevron-down"></i> Daha Fazla Bilgi</span><br>
+        <button class="randevu-btn"><i class="fas fa-calendar-check"></i> Randevu Oluştur</button>
+        <button class="randevu-btn whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp ile Sorgula</button>
       </div>
-      <span class="toggle-btn">Daha Fazla…</span><br>
-      <button class="randevu-btn">Randevu Oluştur</button>
+
+      <!-- Buzdolabı -->
+      <div class="package">
+        <h2>Buzdolabı Bakım Paketi</h2>
+        <span class="original-price">1650 TL</span>
+        <span class="price">1450 TL</span>
+        <span class="discount">%12 indirim</span>
+        <ul>
+          <li>Sıcaklık değerlerinin ölçümü</li>
+          <li>Kapı lastiği kontrolü</li>
+          <li>Gaz basınç testi</li>
+        </ul>
+        <div class="extra">
+          <ul>
+            <li>Kompresör ses ve titreşim kontrolü</li>
+            <li>Fan ve motor performans kontrolü</li>
+            <li>Genel yüzey temizliği</li>
+          </ul>
+        </div>
+        <span class="toggle-btn"><i class="fas fa-chevron-down"></i> Daha Fazla Bilgi</span><br>
+        <button class="randevu-btn"><i class="fas fa-calendar-check"></i> Randevu Oluştur</button>
+        <button class="randevu-btn whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp ile Sorgula</button>
+      </div>
+
+      <!-- Diğer paketler buraya eklenebilir -->
     </div>
 
-    <!-- Kombi -->
-    <div class="package">
-      <h2>Kombi – <span class="price">1700 TL</span></h2>
-      <ul>
-        <li>Yanma verimi ölçümü</li>
-        <li>Su basıncı kontrolü</li>
-        <li>Gaz bağlantı kontrolü</li>
-      </ul>
-      <div class="extra">
-        <ul>
-          <li>Fan ve pompa kontrolü</li>
-          <li>Genleşme tankı kontrolü</li>
-          <li>Genel yüzey temizliği</li>
-        </ul>
+    <div class="testimonials">
+      <h2>Müşterilerimiz Ne Diyor?</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <div class="testimonial-text">
+            "Klima bakımı için TeknoBakım'ı aradım. Çok profesyonel ve hızlı bir hizmet aldım. Klimamın performansı gözle görülür şekilde arttı."
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AK</div>
+            <div>
+              <div>Ahmet K.</div>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial">
+          <div class="testimonial-text">
+            "Buzdolabım sürekli ses yapıyordu. Bakım sonrası hem ses kesildi hem de elektrik faturasında düşüş gözlemledim. Teşekkürler."
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MY</div>
+            <div>
+              <div>Mehtap Y.</div>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial">
+          <div class="testimonial-text">
+            "2 yıldır kullanmadığım fırınım bakım sonrası yeniden çalışmaya başladı. Çok memnun kaldım, herkese tavsiye ederim."
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SD</div>
+            <div>
+              <div>Serkan D.</div>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <span class="toggle-btn">Daha Fazla…</span><br>
-      <button class="randevu-btn">Randevu Oluştur</button>
     </div>
 
-    <!-- Kurutma Makinesi -->
-    <div class="package">
-      <h2>Kurutma Makinesi – <span class="price">1200 TL</span></h2>
-      <ul>
-        <li>Filtre temizliği</li>
-        <li>Tambur dönme testi</li>
-        <li>Elektrik kablosu kontrolü</li>
-      </ul>
-      <div class="extra">
-        <ul>
-          <li>Isıtıcı rezistans kontrolü</li>
-          <li>Nem sensörü kontrolü</li>
-          <li>Genel yüzey temizliği</li>
-        </ul>
+    <div class="faq-container">
+      <h2>Sıkça Sorulan Sorular</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          Bakım hizmeti ne kadar sürer? <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Standart bir bakım işlemi ortalama 1-2 saat sürmektedir. Daha kompleks problemlerde bu süre uzayabilir.
+        </div>
       </div>
-      <span class="toggle-btn">Daha Fazla…</span><br>
-      <button class="randevu-btn">Randevu Oluştur</button>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          Bakım sonrası garanti veriyor musunuz? <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Evet, yapılan tüm bakım işlemleri için 6 aylık garanti vermekteyiz. Garanti kapsamında ortaya çıkan sorunları ücretsiz çözüyoruz.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          Randevu için ne yapmam gerekiyor? <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Web sitemizdeki randevu butonuna tıklayarak veya doğrudan telefon numaramızı arayarak randevu oluşturabilirsiniz. Size en uygun tarih ve saati belirleyebilirsiniz.
+        </div>
+      </div>
+    </div>
+
+    <div class="subscription">
+      <h2><i class="fas fa-calendar-alt"></i> Düzenli Bakım Paketi</h2>
+      <p>Cihazlarınızın ömrünü uzatmak ve olası arıza risklerini en aza indirmek için yıllık bakım aboneliği oluşturabilirsiniz. Yılda bir kez yapılacak profesyonel bakım ile cihazlarınız daima en iyi performansta çalışır.</p>
+      <button class="randevu-btn btn-secondary">Abonelik Bilgileri Al</button>
     </div>
   </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>TeknoBakım</h3>
+        <p>Ev ve iş yeri cihazlarınız için profesyonel bakım ve onarım hizmeti.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>İletişim</h3>
+        <p><i class="fas fa-phone"></i> 0555 123 45 67</p>
+        <p><i class="fas fa-envelope"></i> info@teknobakim.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Örnek Mah. Tekno Cad. No:123 İstanbul</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Hızlı Erişim</h3>
+        <a href="#">Ana Sayfa</a>
+        <a href="#">Hizmetlerimiz</a>
+        <a href="#">Hakkımızda</a>
+        <a href="#">İletişim</a>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2023 TeknoBakım - Tüm hakları saklıdır.
+    </div>
+  </footer>
+
   <script>
+    // Daha Fazla butonu işlevselliği
     document.querySelectorAll(".toggle-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const extra = btn.previousElementSibling;
         if(extra.style.display === "block") {
           extra.style.display = "none";
-          btn.textContent = "Daha Fazla…";
+          btn.innerHTML = "<i class='fas fa-chevron-down'></i> Daha Fazla Bilgi";
+          btn.classList.remove("active");
         } else {
           extra.style.display = "block";
-          btn.textContent = "Daha Az…";
+          btn.innerHTML = "<i class='fas fa-chevron-up'></i> Daha Az Göster";
+          btn.classList.add("active");
+        }
+      });
+    });
+    
+    // SSS işlevselliği
+    document.querySelectorAll(".faq-question").forEach(question => {
+      question.addEventListener("click", () => {
+        const item = question.parentElement;
+        item.classList.toggle("faq-active");
+      });
+    });
+    
+    // Randevu butonları
+    document.querySelectorAll(".randevu-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if(btn.classList.contains("whatsapp-btn")) {
+          window.open("https://wa.me/905551234567?text=Bakım%20paketi%20hakkında%20bilgi%20almak%20istiyorum", "_blank");
+        } else {
+          alert("Randevu sistemimize yönlendiriliyorsunuz. Şu an demo modundasınız.");
+          // Gerçek uygulamada randevu formuna yönlendirme yapılacak
         }
       });
     });
